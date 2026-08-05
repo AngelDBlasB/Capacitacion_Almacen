@@ -3,11 +3,15 @@ package com.angel.almacen.service.productos;
 import com.angel.almacen.dto.productos.ProductoRequest;
 import com.angel.almacen.dto.productos.ProductoResponse;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductoService {
 
-    List<ProductoResponse> listar();
+    List<ProductoResponse> listar(
+            String nombre, String categoria,
+            BigDecimal precioMin,BigDecimal precioMax
+    );
 
     ProductoResponse obtenerPorId(Long id);
 

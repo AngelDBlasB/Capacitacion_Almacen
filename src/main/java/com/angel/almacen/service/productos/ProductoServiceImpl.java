@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,7 +27,10 @@ public class ProductoServiceImpl implements ProductoService{
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProductoResponse> listar() {
+    public List<ProductoResponse> listar(
+            String nombre, String categoria,
+            BigDecimal precioMin, BigDecimal precioMax
+    ) {
 
         log.info("Listando todos los productos");
 

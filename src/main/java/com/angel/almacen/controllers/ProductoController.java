@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -22,8 +23,16 @@ public class ProductoController {
     private final ProductoService productoService;
 
     @GetMapping
-    public ResponseEntity<List<ProductoResponse>> listar(){
-        return ResponseEntity.ok(productoService.listar());
+    public ResponseEntity<List<ProductoResponse>> listar(
+
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String categoría,
+            @RequestParam(required = false) BigDecimal precioMin,
+            @RequestParam(required = false) BigDecimal precioMax
+
+    ){
+        return ResponseEntity.ok(productoService.listar(
+                nombre,categoría,precioMin,precioMax ));
     }
 
     @GetMapping("/{id}")
