@@ -39,7 +39,6 @@ public class ProductoServiceImpl implements ProductoService{
             try {
                 cat = obtenerCategoriaPorDescripcion(categoria);
             } catch (RecursoNoEncontradoException e) {
-                log.error();
                 cat = null;
             }
         }
