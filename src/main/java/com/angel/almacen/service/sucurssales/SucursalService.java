@@ -1,7 +1,5 @@
 package com.angel.almacen.service.sucurssales;
 
-import com.angel.almacen.dto.productos.ProductoRequest;
-import com.angel.almacen.dto.productos.ProductoResponse;
 import com.angel.almacen.dto.sucursales.SucursalRequest;
 import com.angel.almacen.dto.sucursales.SucursalResponse;
 

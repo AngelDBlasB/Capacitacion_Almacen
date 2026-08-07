@@ -29,11 +29,22 @@ public class DetalleVenta {
     @JoinColumn(name = "ID_PRODUCTO",nullable = false)
     private Producto producto;
 
-    @Column(name = "CANTIDAD_PRODUCTOS",nullable = false)
+    @Column(name = "CANTIDAD_PRODUCTO",nullable = false)
     private Integer cantidadProducto;
 
     @Column(name = "PRECIO_PRODUCTO",nullable = false)
     private BigDecimal precioProducto;
+
+    public BigDecimal getSubtotal(){
+        return precioProducto.multiply(BigDecimal.valueOf(cantidadProducto));
+    }
+
+    public void setVenta(Venta venta) {
+        if (venta == null) {
+            throw new IllegalArgumentException("La venta es necesaria");
+        }
+        this.venta = venta;
+    }
 
 
 }

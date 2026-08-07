@@ -26,7 +26,7 @@ public class Venta {
 
     @Column(name = "ESTADO", nullable = false)
     @Enumerated(EnumType.STRING)
-    private EstadoVenta estadoVenta;
+    private EstadoVenta estado;
 
     @Column(name = "FECHA",nullable = false)
     private LocalDate fechaVenta;
@@ -49,15 +49,24 @@ public class Venta {
             this.detalleVentas = new ArrayList<>();
 
         this.detalleVentas.add(detalleVenta);
+        detalleVenta.setVenta(this);
 
     }
 
     public void cancelar(){
 
-        if (this.estadoVenta == EstadoVenta.CANCELADA)
+        if (this.estado == EstadoVenta.CANCELADA)
             throw new IllegalStateException("La venta ya esta cancelada");
 
-        this.estadoVenta = EstadoVenta.CANCELADA;
+        if (this.detalleVentas != null) {
+            for (DetalleVenta detalle : this.detalleVentas) {
+                if (detalle.getProducto() != null) {
+                    detalle.getProducto().aumentarCantidad(detalle.getCantidadProducto());
+                }
+            }
+        }
+
+        this.estado = EstadoVenta.CANCELADA;
 
     }
 

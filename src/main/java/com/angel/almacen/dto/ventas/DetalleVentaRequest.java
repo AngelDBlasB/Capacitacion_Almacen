@@ -11,7 +11,7 @@ public record DetalleVentaRequest(
 
         @NotNull(message = "La cantidad del producto del producto es requerido")
         @Positive(message = "La cantida del producto debe ser positivo")
-        Integer cantidadProducto
+        Integer cantidad
 
 ) {
 }

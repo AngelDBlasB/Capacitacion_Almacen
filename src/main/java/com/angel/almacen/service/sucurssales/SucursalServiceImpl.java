@@ -2,9 +2,7 @@ package com.angel.almacen.service.sucurssales;
 
 import com.angel.almacen.dto.sucursales.SucursalRequest;
 import com.angel.almacen.dto.sucursales.SucursalResponse;
-import com.angel.almacen.entities.Producto;
 import com.angel.almacen.entities.Sucursal;
-import com.angel.almacen.enums.Categoria;
 import com.angel.almacen.exceptions.RecursoNoEncontradoException;
 import com.angel.almacen.mappers.SucursalMapper;
 import com.angel.almacen.repositories.SucursalRepository;

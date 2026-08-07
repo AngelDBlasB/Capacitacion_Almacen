@@ -26,13 +26,13 @@ public class ProductoController {
     public ResponseEntity<List<ProductoResponse>> listar(
 
             @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String categoría,
+            @RequestParam(required = false) String categoria,
             @RequestParam(required = false) BigDecimal precioMin,
             @RequestParam(required = false) BigDecimal precioMax
 
     ){
         return ResponseEntity.ok(productoService.listar(
-                nombre,categoría,precioMin,precioMax ));
+                nombre,categoria,precioMin,precioMax ));
     }
 
     @GetMapping("/{id}")

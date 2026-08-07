@@ -32,10 +32,25 @@ public class ProductoServiceImpl implements ProductoService{
             BigDecimal precioMin, BigDecimal precioMax
     ) {
 
-        log.info("Listando todos los productos");
+        log.info("Listando productos con filtros opcionales...");
 
-        return productRepository.findAll().stream()
-                .map(productoMapper::entidadAResponse).toList();
+        Categoria cat=null;
+        if (categoria != null && !categoria.isBlank()){
+            try {
+                cat = obtenerCategoriaPorDescripcion(categoria);
+            } catch (RecursoNoEncontradoException e) {
+                log.error();
+                cat = null;
+            }
+        }
+
+        String nombreLimpio = (nombre != null && !nombre.trim().isEmpty()) ? nombre.trim() : null;
+
+        // Una sola llamada al repositorio
+        return productRepository.buscarConFiltros(nombreLimpio, cat, precioMin, precioMax)
+                .stream()
+                .map(productoMapper::entidadAResponse)
+                .toList();
     }
 
     @Override
